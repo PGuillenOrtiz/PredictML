@@ -1,0 +1,75 @@
+{% extends "principal.html" %}
+
+{% block content %}
+
+<!-- Header -->
+<header id="portfolio">
+    <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>Heart Attack</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">This model can predict the posivility to have a Heart Attack. The optional exclude argument can be used to provide a set of field names that can be excluded from validation and cleaning. ModelForm uses this argument to exclude fields that aren’t present on your form from being validated since any errors raised could not be corrected by the user.
+
+        Note that full_clean() will not be called automatically when you call your model’s save() method. You’ll need to call it manually when you want to run one-step model validation for your own manually created models.{{ object_list.Option }}</span>
+    </div>
+    </div>
+  </header>
+
+
+  <div class="w3-row-padding">
+    <div class="w3-container w3-margin-bottom">
+      <a>
+      <img src="{{ principal.images.url }}" alt="Norway"  class="w3-margin-right" style="object-fit:cover; width:920px; height:100px; border: solid 1px #CCC" ></a>
+        <form action="/getValue/" method="POST">{% csrf_token %}
+            <div class="w3-margin-top">
+            {% for campo in object_list %}
+            <div class="w3-third w3-container w3-margin-bottom">
+              <div><label for="cars">{{ campo.name_campo }}</label>
+                <span class="omrs-input-label w3-yellow " title="{{ campo.info }}">&#10069;</span>
+              </div>
+              {% if campo.option %}
+              <select name="valores" id="valores">
+                <optgroup label="valores">
+                  {% for key,value in campo.option.items %}
+                  <option class="w3-block w3-teal" value={{key}}>{{value}}</option>
+                  {% endfor %}
+              </select>
+              {% else %}
+                <input type="text" list="cars" name="valores" class="form-control" placeholder={{ campo.name_campo }} title="{{ campo.info }}" options="djkk">
+            {% endif %}
+          </div>
+            {% endfor %}
+            <button type="submit" style="font-size:2vw" class="btn btn-primary w3-button w3-block w3-teal ">C a l c u l a t e</button>
+            </div>
+        </form>
+        <div class="w3-container w3-margin-top w3-block" style="width: 75%;">
+          <canvas id="pie-chart"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script><script>
+          var config = {
+            type: 'pie',
+            data: {
+              datasets: [{
+                data: {{ result1 }},
+                backgroundColor: [
+                '#0000ff', '#ff0000'
+                ],
+                label: 'Result'
+              }],
+              labels: ['No Heart Attack', 'Heart Attack']
+            },
+            options: {
+              responsive: true
+            }
+          };
+          window.onload = function() {
+            var ctx = document.getElementById('pie-chart').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+          };
+        </script>
+      </div>
+        </div>
+
+
+{% endblock %}
