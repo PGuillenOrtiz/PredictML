@@ -43,10 +43,12 @@
             <button type="submit" style="font-size:2vw" class="btn btn-primary w3-button w3-block w3-teal ">C a l c u l a t e</button>
             </div>
         </form>
-        <div class="w3-container w3-margin-top w3-block" style="width: 75%;">
+        <div class="w3-container w3-margin-top w3-block" style="width: 50%;">
           <canvas id="pie-chart"></canvas>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script><script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.js" integrity="sha512-Yzo/giBs5BES+fbKjSTy/2oZaf+CcnxVvWODk0bfzHgEPQUPdgtDCucIBLR3JrlDp2D83r0gaoOGugTjafScxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
           var config = {
             type: 'pie',
             data: {
@@ -54,14 +56,18 @@
                 data: {{ result1 }},
                 backgroundColor: [
                 '#0000ff', '#ff0000'
-                ],
-                label: 'Result'
+                ]
               }],
               labels: ['No Heart Attack', 'Heart Attack']
             },
             options: {
-              responsive: true
-            }
+              scales: {
+              }
+            },
+            plugins: [ChartDataLabels],
+              options: {
+                // ...
+              }
           };
           window.onload = function() {
             var ctx = document.getElementById('pie-chart').getContext('2d');
