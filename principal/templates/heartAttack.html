@@ -43,17 +43,26 @@
             <button type="submit" style="font-size:2vw" class="btn btn-primary w3-button w3-block w3-teal ">C a l c u l a t e</button>
             </div>
         </form>
-        <div class="w3-container w3-margin-top w3-block" style="width: 50%;">
+      </div>
+    </div>
+        <div class="d-flex justify-content-center" style="width:40%; text-align:center;">
           <canvas id="pie-chart"></canvas>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.js" integrity="sha512-Yzo/giBs5BES+fbKjSTy/2oZaf+CcnxVvWODk0bfzHgEPQUPdgtDCucIBLR3JrlDp2D83r0gaoOGugTjafScxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
           var config = {
+            labels: {{ result1 }},
             type: 'pie',
             data: {
               datasets: [{
                 data: {{ result1 }},
+                datalabels: {
+                  color: 'black',
+                  font: {
+                    size: 20
+                }
+                },
                 backgroundColor: [
                 '#0000ff', '#ff0000'
                 ]
@@ -62,20 +71,32 @@
             },
             options: {
               scales: {
-              }
+              },
+              plugins: {
+                legend: {
+                  labels: {
+                    // This more specific font property overrides the global property
+                    color: 'black',
+                    font: {
+                        size: 18
+                    }
+                  }
+                  },
+                tooltip: {
+                  enabled: false
+                },
+                datalabels: {
+                  formatter: (value, context) => {
+                    return value+'%';
+                  },
+                }
+                }
             },
-            plugins: [ChartDataLabels],
-              options: {
-                // ...
-              }
+            plugins: [ChartDataLabels]
           };
           window.onload = function() {
             var ctx = document.getElementById('pie-chart').getContext('2d');
             window.myPie = new Chart(ctx, config);
           };
         </script>
-      </div>
-        </div>
-
-
 {% endblock %}
