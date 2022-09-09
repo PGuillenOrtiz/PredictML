@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Principal, Predictivo, Campo_modelo
+from .models import Principal, Predictivo, Campo_modelo, PersonalData
 from django.views.generic import ListView, FormView
 import pickle
 from .ml_model import ml_heartAttack
@@ -40,7 +40,7 @@ class HA_FormListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['principal'] = Principal.objects.get(id=3)
+        context['principal'] = Principal.objects.get(name="Heart Disease")
         try:
             valor = Predictivo.objects.all()[0]
             context['result1'] = valor
@@ -57,5 +57,6 @@ class PrincipalListView(ListView):
         context = super().get_context_data(**kwargs)
         #print(context)
         context['post'] = Predictivo.objects.filter(name='lacree')
-        context['jose'] = sum()
+        context['personal'] = PersonalData.objects.get(name='Pablo Guillen Ortiz')
+        context['cv'] = Principal.objects.get(name="Heart Disease")
         return context
