@@ -41,6 +41,8 @@ class HA_FormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['principal'] = Principal.objects.get(name="Heart Disease")
+        context['personal'] = PersonalData.objects.get(name='Pablo Guillen Ortiz')
+        context['cv'] = Principal.objects.get(name="Heart Disease")
         try:
             valor = Predictivo.objects.all()[0]
             context['result1'] = valor

@@ -9,9 +9,7 @@
     <div class="w3-container">
     <h1><b>Heart Attack</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-      <span class="w3-margin-right">This model can predict the posivility to have a Heart Attack. The optional exclude argument can be used to provide a set of field names that can be excluded from validation and cleaning. ModelForm uses this argument to exclude fields that aren’t present on your form from being validated since any errors raised could not be corrected by the user.
-
-        Note that full_clean() will not be called automatically when you call your model’s save() method. You’ll need to call it manually when you want to run one-step model validation for your own manually created models.{{ object_list.Option }}</span>
+      <span class="w3-margin-right">{{ principal.full_description|linebreaks }}</span>
     </div>
     </div>
   </header>

@@ -15,7 +15,7 @@ class Predictivo(models.Model):
 class Campo_modelo(models.Model):
     name_campo = models.CharField(max_length=30)
     info = models.TextField(max_length=255)
-    option = models.JSONField(null=True)
+    option = models.JSONField(null=True, blank=True)
     n_campo = models.FloatField(null=True, blank=True)
     ml_model = models.CharField(max_length=30)
 
@@ -26,7 +26,8 @@ class Campo_modelo(models.Model):
 class Principal(models.Model):
     images = models.ImageField()
     name = models.CharField(max_length=30)
-    description = models.TextField(max_length=255)
+    partial_description = models.TextField(max_length=255)
+    full_description = models.TextField(max_length=2000, null=True)
     predictivo = models.ForeignKey(Predictivo,null=True,blank=True,on_delete=models.CASCADE)
     url = models.URLField(max_length=255, null=True)
     curriculum = models.FileField(null=True)
