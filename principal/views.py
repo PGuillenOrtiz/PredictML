@@ -3,6 +3,9 @@ from .models import Principal, Predictivo, Campo_modelo, PersonalData
 from django.views.generic import ListView, FormView
 import pickle
 from .ml_model import ml_heartAttack
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 
 # Create your views here.
 def heartAttack(request):
@@ -16,23 +19,30 @@ def getValue(request):
     Predictivo.objects.create(name=y_Pred.t_result())
     return redirect('/heart_attack/#pie-chart')
 
-def el_valor():
-    a=0
-    return a
+def envioMessage(request):
+    if request.method == 'POST':
+        name = request.POST('Name')
+        email = request.POST('Email')
+        message = request.POST('Message')
 
+        template = render_to_string('email_template.html', {
+            'name': name,
+            'email': email,
+            'message': message
+        })
 
-def HA_FormView(request):
-    principal = Campo_modelo.objects.all
-    return render(request, 'heartAttack.html', {'principal':principal})
+        email = EmailMessage(
+            template,
+            settings.EMAIL_HOST_USER,
+            ['guillenpablo@gmail.com']
+        )
 
-def principal(request):
-    principal = 3
-    return render(request, 'heartAttack.html', {'principal':principal})
+        email.fail_silently = False
+        email.send()
 
-def sum():
-    a=1
-    b=2
-    return a+b
+        message.success(request, 'Email sent successfully')
+        return redirect('/')
+
 
 class HA_FormListView(ListView):
     model = Campo_modelo
