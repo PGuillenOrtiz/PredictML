@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect
 from .models import Principal, Predictivo, Campo_modelo, PersonalData
 from django.views.generic import ListView, FormView
@@ -6,6 +7,7 @@ from .ml_model import ml_heartAttack
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib import messages
 
 # Create your views here.
 def heartAttack(request):
@@ -21,9 +23,10 @@ def getValue(request):
 
 def envioMessage(request):
     if request.method == 'POST':
-        name = request.POST('Name')
-        email = request.POST('Email')
-        message = request.POST('Message')
+        name = request.POST["name"]
+        email = request.POST['email']
+        message = request.POST['Message']
+        subject = 'Mensaje de la pagina MLPredict de '+name
 
         template = render_to_string('email_template.html', {
             'name': name,
@@ -32,6 +35,7 @@ def envioMessage(request):
         })
 
         email = EmailMessage(
+            subject,
             template,
             settings.EMAIL_HOST_USER,
             ['guillenpablo@gmail.com']
@@ -40,8 +44,8 @@ def envioMessage(request):
         email.fail_silently = False
         email.send()
 
-        message.success(request, 'Email sent successfully')
-        return redirect('/')
+        messages.success(request, 'Email sent successfully')
+        return redirect('/#contact')
 
 
 class HA_FormListView(ListView):

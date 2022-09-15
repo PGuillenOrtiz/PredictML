@@ -206,13 +206,20 @@ body,h1,h2,h3,h4,h5,h6,header {font-family: "Raleway", sans-serif}
     </div>
     <hr class="w3-opacity">
     <form action="/envioMessage/" method="POST">{% csrf_token %}
+      {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+        </div>
+      {% endfor %}
+    {% endif %}
       <div class="w3-section">
         <label>Name</label>
-        <input class="w3-input w3-border" type="text" name="Name" required>
+        <input class="w3-input w3-border" type="text" name="name" required>
       </div>
       <div class="w3-section">
         <label>Email</label>
-        <input class="w3-input w3-border" type="text" name="Email" required>
+        <input class="w3-input w3-border" type="text" name="email" required>
       </div>
       <div class="w3-section">
         <label>Message</label>
