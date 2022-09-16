@@ -10,9 +10,9 @@ from django.conf import settings
 from django.contrib import messages
 
 # Create your views here.
-def heartAttack(request):
-    principal = Principal.objects.get(id=3)
-    return render(request, 'heartAttack.html', {'principal':principal})
+def stellar_class(request):
+    stellar_bd = Principal.objects.get(name="Stellar Classification")
+    return render(request, 'stellar_class.html', {'principal':stellar_bd})
 
 def getValue(request):
     valores = request.POST.getlist('valores')

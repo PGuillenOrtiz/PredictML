@@ -208,7 +208,7 @@ body,h1,h2,h3,h4,h5,h6,header {font-family: "Raleway", sans-serif}
     <form action="/envioMessage/" method="POST">{% csrf_token %}
       {% if messages %}
       {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert alert-warning alert-dismissible text-center w3-teal fade show" role="alert">
           {{message}}
         </div>
       {% endfor %}
