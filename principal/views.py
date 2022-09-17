@@ -45,7 +45,9 @@ def envioMessage(request):
         email.send()
 
         messages.success(request, 'Email sent successfully')
-        return redirect('/#contact')
+        url = request.META['HTTP_REFERER']
+        print(url)
+        return redirect(url + '#contact')
 
 
 class HA_FormListView(ListView):
