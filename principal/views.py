@@ -46,7 +46,6 @@ def envioMessage(request):
 
         messages.success(request, 'Email sent successfully')
         url = request.META['HTTP_REFERER']
-        print(url)
         return redirect(url + '#contact')
 
 

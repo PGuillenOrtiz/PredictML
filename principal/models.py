@@ -31,6 +31,7 @@ class Principal(models.Model):
     predictivo = models.ForeignKey(Predictivo,null=True,blank=True,on_delete=models.CASCADE)
     url = models.URLField(max_length=255, null=True)
     curriculum = models.FileField(null=True)
+    notebook_model = models.FileField(null=True)
 
     def __str__(self):
         return self.name

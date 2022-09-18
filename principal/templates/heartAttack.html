@@ -7,9 +7,14 @@
     <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65%;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    <h1><b>Heart Attack</b></h1>
+    <h1><b>Heart Disease</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">{{ principal.full_description|linebreaks }}</span>
+      <p>
+        <a href={{ principal.notebook_model.url }}><button class="w3-button w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">
+          <i class="fa fa-download w3-margin-right"></i>Download notebook PDF
+        </button></a>
+      </p>
     </div>
     </div>
   </header>
@@ -65,7 +70,7 @@
                 '#0000ff', '#ff0000'
                 ]
               }],
-              labels: ['No Heart Attack', 'Heart Attack']
+              labels: ['No Heart Disease', 'Heart Disease']
             },
             options: {
               scales: {
