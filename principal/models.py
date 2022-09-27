@@ -29,9 +29,9 @@ class Principal(models.Model):
     partial_description = models.TextField(max_length=255)
     full_description = models.TextField(max_length=2000, null=True)
     predictivo = models.ForeignKey(Predictivo,null=True,blank=True,on_delete=models.CASCADE)
-    url = models.URLField(max_length=255, null=True)
+    url = models.CharField(max_length=255, null=True, blank=True)
     curriculum = models.FileField(null=True)
-    notebook_model = models.FileField(null=True)
+    notebook_model = models.FileField(null=True, blank=True)
 
     def __str__(self):
         return self.name
