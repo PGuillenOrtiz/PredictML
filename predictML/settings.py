@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'predictML.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 import dj_database_url
-from decouple import config 
+from decouple import config
 
 DATABASES = {
     'default': dj_database_url.config(
