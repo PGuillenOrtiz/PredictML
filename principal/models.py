@@ -24,7 +24,7 @@ class Campo_modelo(models.Model):
         return nadmin
 
 class Principal(models.Model):
-    images = models.ImageField()
+    images = models.TextField(max_length=255)
     name = models.CharField(max_length=30)
     partial_description = models.TextField(max_length=255)
     full_description = models.TextField(max_length=2000, null=True)
