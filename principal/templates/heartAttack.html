@@ -22,7 +22,7 @@
   <div class="w3-row-padding">
     <div class="w3-container w3-margin-bottom">
       <a>
-      <img src="{{ principal.images }}" alt="Norway"  class="w3-margin-right" style="object-fit:cover; width:920px; height:100px; border: solid 1px #CCC" ></a>
+      <img src="{{ principal.images }}" alt="Norway"  class="w3-margin-right" style="width:920px; height:100px;" ></a>
         <form action="/getValue/" method="POST">{% csrf_token %}
             <div class="w3-margin-top">
             {% for campo in object_list %}
