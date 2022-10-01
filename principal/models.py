@@ -30,7 +30,6 @@ class Principal(models.Model):
     full_description = models.TextField(max_length=2000, null=True)
     predictivo = models.ForeignKey(Predictivo,null=True,blank=True,on_delete=models.CASCADE)
     url = models.CharField(max_length=255, null=True, blank=True)
-    curriculum = models.FileField(null=True)
     notebook_model = models.FileField(null=True, blank=True)
 
     def __str__(self):
@@ -42,6 +41,7 @@ class PersonalData(models.Model):
     email = models.EmailField(max_length=40)
     address = models.TextField(max_length=255)
     telefone = models.TextField(max_length=100)
+    curriculum = models.TextField(max_length=255)
 
     def __str__(self):
         return self.name
