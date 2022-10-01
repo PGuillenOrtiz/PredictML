@@ -41,7 +41,7 @@ class PersonalData(models.Model):
     email = models.EmailField(max_length=40)
     address = models.TextField(max_length=255)
     telefone = models.TextField(max_length=100)
-    curriculum = models.TextField(max_length=255)
+    curriculum = models.TextField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
