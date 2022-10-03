@@ -30,7 +30,7 @@ class Principal(models.Model):
     full_description = models.TextField(max_length=2000, null=True)
     predictivo = models.ForeignKey(Predictivo,null=True,blank=True,on_delete=models.CASCADE)
     url = models.CharField(max_length=255, null=True, blank=True)
-    notebook_model = models.FileField(null=True, blank=True)
+    notebook_model = models.TextField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
