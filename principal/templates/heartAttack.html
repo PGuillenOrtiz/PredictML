@@ -36,7 +36,7 @@
                   {% endfor %}
               </select>
               {% else %}
-                <input type="text" list="cars" name="valores" class="form-control" placeholder={{ campo.name_campo }} title="{{ campo.info }}" options="djkk">
+                <input type="number" list="cars" name="valores" value="0" class="form-control" placeholder={{ campo.name_campo }} title="{{ campo.info }}">
             {% endif %}
           </div>
             {% endfor %}
